@@ -62,8 +62,8 @@ uint8_t keys6_b[] = {KG, KI, KT, KSPACE, KP, KU, KS, KH, KSPACE, KMINUS, KMINUS,
 
 // MODE 2
 
-uint8_t *keys_b[] = {mode_change, keys1_, keys2, keys3, keys4, keys5, keys6};
-uint8_t keys_s_b[] = {ARR_SZ(mode_change), ARR_SZ(keys0), ARR_SZ(keys0), ARR_SZ(keys0), ARR_SZ(keys0), ARR_SZ(keys0), ARR_SZ(keys0)};
+uint8_t *keys_b[] = {mode_change, keys1_b, keys2_b, keys3_b, keys4_b, keys5_b, keys6_b};
+uint8_t keys_s_b[] = {ARR_SZ(mode_change), ARR_SZ(keys1_b), ARR_SZ(keys2_b), ARR_SZ(keys3_b), ARR_SZ(keys4_b), ARR_SZ(keys5_b), ARR_SZ(keys6_b)};
 
 
 
@@ -200,6 +200,8 @@ int main(void)
 		if (btn_index == 0)
 		{
 			mode = mode?0:1; //flip mode
+			IO_set(0, mode==1); //set PD4 for mode 1 led
+			IO_set(0, mode==0); //set PD5 for mode 2 led
 		}
 
 		if (btn_index < 0)
