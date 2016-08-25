@@ -3,7 +3,7 @@ Three key Madness (3KM) is a short C code based on the Techkeys.us 3-key busines
 
 #### Deploy The Firmware to the chip
 
-1. Create a firmware using make
+1. Create a firmware using `make`
 2. Put your keyboard into bootloader mode
 3. Program your .hex file (replace device type as necessary, your file should be in the `./bin` dir)
 
