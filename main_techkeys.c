@@ -13,6 +13,7 @@
 #include "timer.h"
 #include "auxiliary.h"
 
+#define BUTTON_NUM 3
 
 volatile bool should_scan = false;
 
@@ -147,7 +148,7 @@ int _wait_buttons_press(void)
 	{
 		int count = 0;
 		int pressed_i = 1;
-		for (int i = 1; i <= 3; ++i) {
+		for (int i = 1; i <= BUTTON_NUM; ++i) {
 			if (_is_button_pressed(i))
 			{
 				count++;
@@ -230,7 +231,7 @@ int main(void)
 
 		if (btn_index < 0)
 		{
-			btn_index = 3 - btn_index;
+			btn_index = BUTTON_NUM - btn_index;
 		}
 		
 		if (mode)
@@ -272,8 +273,8 @@ int main(void)
 
 void MAIN_timer_handler()
 {
-	// for (int i = 0; i < 3; ++i)
-	// 	IO_set(1+i, IO_get(4+i));
+	for (int i = 0; i < BUTTON_NUM; ++i)
+		IO_set(1+i, IO_get(4+i));
 }
 
 void MAIN_handle_sof()
