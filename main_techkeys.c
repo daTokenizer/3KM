@@ -66,6 +66,30 @@ uint8_t *keys_b[] = {mode_change, keys1_b, keys2_b, keys3_b, keys4_b, keys5_b, k
 uint8_t keys_s_b[] = {ARR_SZ(mode_change), ARR_SZ(keys1_b), ARR_SZ(keys2_b), ARR_SZ(keys3_b), ARR_SZ(keys4_b), ARR_SZ(keys5_b), ARR_SZ(keys6_b)};
 
 
+// // GPIO pins
+// GPIO_PINS[6] = {
+// 	_BV(PC2), // GPIO 1
+// 	_BV(PD0), // GPIO 2
+// 	_BV(PD3), // GPIO 4
+// 	_BV(PD6), // GPIO 3
+// 	_BV(PD4), // GPIO 5
+// 	_BV(PD5)  // GPIO 6
+// };
+
+void _toggle_mode_lights(int mode)
+{
+	if (mode==1)
+	{
+		PORTD |= _BV(PD5); // GPIO 5
+		PORTD &= ~(_BV(PD4));  // GPIO 6
+	}
+	else //mode = 0
+	{
+		PORTD |= _BV(PD4); // GPIO 5
+		PORTD &= ~(_BV(PD5));  // GPIO 6
+	}
+}
+
 
 void _clear_context(void)
 {
@@ -190,6 +214,7 @@ int main(void)
 	_delay_ms(10);
 	IO_set(0, true);
 
+	_toggle_mode_lights(mode);
 	while (true) {
 		uint8_t *k = NULL;
 		uint8_t s = 0;
@@ -200,8 +225,7 @@ int main(void)
 		if (btn_index == 0)
 		{
 			mode = mode?0:1; //flip mode
-			IO_set(0, mode==1); //set PD4 for mode 1 led
-			IO_set(0, mode==0); //set PD5 for mode 2 led
+			_toggle_mode_lights(mode);
 		}
 
 		if (btn_index < 0)
@@ -248,8 +272,8 @@ int main(void)
 
 void MAIN_timer_handler()
 {
-	for (int i = 0; i < 3; ++i)
-		IO_set(1+i, IO_get(4+i));
+	// for (int i = 0; i < 3; ++i)
+	// 	IO_set(1+i, IO_get(4+i));
 }
 
 void MAIN_handle_sof()
