@@ -23,48 +23,45 @@ uint8_t mode_change[] = {KM, KO, KD, KE, KSPACE, KC, KH, KA, KN, KG, KE, KD}; //
 
 // MODE 1 (default)
 
-uint8_t keys0[] = {KH, KT, KT, KP, KSHIFT, KSEMICOLON, KSLASH, KSLASH, KW, KW, KW,
-	KPERIOD, KA, KD, KA, KM, KL, KE, KV, KPERIOD, KC, KO, KM}; // http://www.adamlev.com
+uint8_t keys0[] = {KH, KT, KT, KP, KSHIFT, KSEMICOLON, KSLASH, KSLASH, KW, KW, KW, KPERIOD, KA, KD, KA, KM, KL, KE, KV, KPERIOD, KC, KO, KM};
 
 uint8_t keys1[] = {KG, KI, KT, KSPACE, KS, KT, KA, KT, KU, KS, KSPACE, KMINUS, KV}; // git status -v
 
 uint8_t keys2[] = {KG, KI, KT, KSPACE, KP, KU, KL, KL}; // git pull
 
-uint8_t keys3[] = {KSHIFT, KTILDE, KSLASH, KR, KU, KN, KSHIFT, KMINUS, KA, 
-	KL, KL, KSHIFT, KMINUS, KT, KE, KS, KT, KS}; // ~/run_all_tests
+uint8_t keys3[] = {KSHIFT, KTILDE, KSLASH, KR, KU, KN, KSHIFT, KMINUS, KA, KL, KL, KSHIFT, KMINUS, KT, KE, KS, KT, KS}; // ~/run_all_tests
 
-uint8_t keys4[] = {KG, KI, KT, KSPACE, KC, KH, KE, KC, KK, KO, KU, KT, KSPACE, KR, KE, KL, KE, KA, KS, KE, KSLASH, KEYPAD_7, KPERIOD, KEYPAD_0, KPERIOD, KEYPAD_1, KEYPAD_0, KEYPAD_0};// git checkout release/7.0.100
+uint8_t keys1_long[] = {KG, KI, KT, KSPACE, KC, KH, KE, KC, KK, KO, KU, KT, KSPACE, KR, KE, KL, KE, KA, KS, KE, KSLASH, KEYPAD_7, KPERIOD, KEYPAD_0, KPERIOD, KEYPAD_1, KEYPAD_0, KEYPAD_0};// git checkout release/7.0.100
 
-uint8_t keys5[] = {KG, KI, KT, KSPACE, KR, KE, KB, KA, KS, KE, KSPACE, KO, KR, KI, KG, KI, KN, KSLASH, KR, KE, KL, KE, KA, KS, KE, KSLASH, KEYPAD_7, KPERIOD, KEYPAD_0, KPERIOD, KEYPAD_1, KEYPAD_0, KEYPAD_0}; // git rebase origin/release/7.0.100
+uint8_t keys2_long[] = {KG, KI, KT, KSPACE, KR, KE, KB, KA, KS, KE, KSPACE, KO, KR, KI, KG, KI, KN, KSLASH, KR, KE, KL, KE, KA, KS, KE, KSLASH, KEYPAD_7, KPERIOD, KEYPAD_0, KPERIOD, KEYPAD_1, KEYPAD_0, KEYPAD_0}; // git rebase origin/release/7.0.100
 
-uint8_t keys6[] = {KG, KI, KT, KSPACE, KP, KU, KS, KH, KSPACE, KMINUS, KMINUS, KF, KO, KR, KC, KE}; // git push --force
-
+uint8_t keys3_long[] = {KG, KI, KT, KSPACE, KP, KU, KS, KH, KSPACE, KMINUS, KMINUS, KF, KO, KR, KC, KE}; // git push --force
 
 
-uint8_t *keys[] = {mode_change, keys1, keys2, keys3, keys4, keys5, keys6};
-uint8_t keys_s[] = {ARR_SZ(mode_change), ARR_SZ(keys1), ARR_SZ(keys2), ARR_SZ(keys3), ARR_SZ(keys4), ARR_SZ(keys5), ARR_SZ(keys6)};
+
+uint8_t *keys[] = {mode_change, keys1, keys2, keys3, keys1_long, keys2_long, keys3_long};
+uint8_t keys_s[] = {ARR_SZ(mode_change), ARR_SZ(keys1), ARR_SZ(keys2), ARR_SZ(keys3), ARR_SZ(keys1_long), ARR_SZ(keys2_long), ARR_SZ(keys3_long)};
 
 
-uint8_t keys1_b[] = {KG, KI, KT, KSPACE, KS, KT, KA, KT, KU, KS, KSPACE, KMINUS, KV}; // git status -v
+uint8_t keys1_b[] = {KX, KC, KA, KL, KC}; // xcalc
 
 uint8_t keys2_b[] = {KG, KI, KT, KSPACE, KP, KU, KL, KL}; // git pull
 
-uint8_t keys3_b[] = {KSHIFT, KTILDE, KSLASH, KR, KU, KN, KSHIFT, KMINUS, KA, 
-	KL, KL, KSHIFT, KMINUS, KT, KE, KS, KT, KS}; // ~/run_all_tests
+uint8_t keys3_b[] = {KC, KD, KSPACE, KSHIFT, KTILDE, KSLASH, KS, KR, KC}; // cd ~/src
 
-uint8_t keys4_b[] = {KG, KI, KT, KSPACE, KC, KH, KE, KC, KK, KO, KU, KT, KSPACE, KR, KE, KL, KE, KA, KS, KE, KSLASH, KEYPAD_7, KPERIOD, KEYPAD_0, KPERIOD, KEYPAD_1, KEYPAD_0, KEYPAD_0};// git checkout release/7.0.100
+uint8_t keys1_b_long[] = {KPERIOD, KSLASH, KR, KU, KN}; // ./run
 
-uint8_t keys5_b[] = {KG, KI, KT, KSPACE, KR, KE, KB, KA, KS, KE, KSPACE, KO, KR, KI, KG, KI, KN, KSLASH, KR, KE, KL, KE, KA, KS, KE, KSLASH, KEYPAD_7, KPERIOD, KEYPAD_0, KPERIOD, KEYPAD_1, KEYPAD_0, KEYPAD_0}; // git rebase origin/release/7.0.100
+uint8_t keys2_b_long[] = {KG, KI, KT, KSPACE, KP, KU, KS, KH}; // git push
 
-uint8_t keys6_b[] = {KG, KI, KT, KSPACE, KP, KU, KS, KH, KSPACE, KMINUS, KMINUS, KF, KO, KR, KC, KE}; // git push --force
+uint8_t keys3_b_long[] = {KC, KD, KSPACE, KSHIFT, KTILDE, KSLASH, KS, KR, KC, KSLASH, KG, KI, KT, KSHIFT, KH, KU, KB}; // cd ~/src/gitHub
 
 
 
 
 // MODE 2
 
-uint8_t *keys_b[] = {mode_change, keys1_b, keys2_b, keys3_b, keys4_b, keys5_b, keys6_b};
-uint8_t keys_s_b[] = {ARR_SZ(mode_change), ARR_SZ(keys1_b), ARR_SZ(keys2_b), ARR_SZ(keys3_b), ARR_SZ(keys4_b), ARR_SZ(keys5_b), ARR_SZ(keys6_b)};
+uint8_t *keys_b[] = {mode_change, keys1_b, keys2_b, keys3_b, keys1_b_long, keys2_b_long, keys3_b_long};
+uint8_t keys_s_b[] = {ARR_SZ(mode_change), ARR_SZ(keys1_b), ARR_SZ(keys2_b), ARR_SZ(keys3_b), ARR_SZ(keys1_b_long), ARR_SZ(keys2_b_long), ARR_SZ(keys3_b_long)};
 
 
 // // GPIO pins
