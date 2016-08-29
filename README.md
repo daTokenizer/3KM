@@ -5,7 +5,7 @@ Three key Madness (3KM) is a short C code based on the Techkeys.us 3-key busines
 
 1. short/long press deffrentiation - two different macros per key per mode (see below)
 2. two modes - holding all three keys will change modes -  two entire sets of macros ("mode changed" will be printed to context)
-3. mode LED support - connect LEDs from PD4 to ground and from PD5 to ground to see what mode you are in)
+3. mode LED support - connect LEDs from PD4 to ground and from PD5 to ground to see what mode you are in (you may then also want to disable the mode change print)
 
 #### Deploy The Firmware to the chip
 
