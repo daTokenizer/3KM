@@ -148,32 +148,40 @@ int _wait_buttons_press(void)
 	{
 		int count = 0;
 		int pressed_i = 1;
+		int first_count = 0;
+		int second_count = 0;
+		while (first_count == 0)
+		{
+			for (int i = 1; i <= BUTTON_NUM; ++i) {
+				if (_is_button_pressed(i))
+				{
+					pressed_i = i;
+					count++;
+				}
+			}
+			first_count = count;
+		}
+		_delay_ms(50);
+		count = 0;
 		for (int i = 1; i <= BUTTON_NUM; ++i) {
 			if (_is_button_pressed(i))
 			{
 				count++;
-				if (_is_button_long_pressed(i))
-				{
-					pressed_i = -i;
-				}
-				else
-				{
-					pressed_i = i;
-				}
 			}
 		}
-		
-		if (count > 0)
-		{
-			if (count > 2)
-			{
-				return 0;
-			}
-			else
-			{
-				return pressed_i;	
-			}
+		second_count = count;
 
+		if ((first_count > 1) || (second_count > 1))
+		{
+			return 0;
+		}
+		else if(_is_button_long_pressed(pressed_i))
+		{
+			return -pressed_i;
+		}
+		else
+		{
+			return pressed_i;
 		}
 	}
 }
