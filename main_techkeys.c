@@ -108,10 +108,10 @@ void _clear_context(void)
 	_delay_ms(100);
 }
 
-void _hold_shift(bool is_holding)
+void _toggle_shift(bool should_hold)
 {
 	_delay_ms(3);
-	HID_set_scancode_state(KSHIFT, is_holding);
+	HID_set_scancode_state(KSHIFT, should_hold);
 	HID_commit_state();
 	_delay_ms(3);
 }
@@ -144,45 +144,43 @@ bool _is_button_long_pressed(int btn_index)
 
 int _wait_buttons_press(void)
 {
-	while (true)
+
+	int count = 0;
+	int pressed_i = 1;
+	int first_count = 0;
+	int second_count = 0;
+	while (first_count == 0)
 	{
-		int count = 0;
-		int pressed_i = 1;
-		int first_count = 0;
-		int second_count = 0;
-		while (first_count == 0)
-		{
-			for (int i = 1; i <= BUTTON_NUM; ++i) {
-				if (_is_button_pressed(i))
-				{
-					pressed_i = i;
-					count++;
-				}
-			}
-			first_count = count;
-		}
-		_delay_ms(50);
-		count = 0;
 		for (int i = 1; i <= BUTTON_NUM; ++i) {
 			if (_is_button_pressed(i))
 			{
+				pressed_i = i;
 				count++;
 			}
 		}
-		second_count = count;
+		first_count = count;
+	}
+	_delay_ms(50);
+	count = 0;
+	for (int i = 1; i <= BUTTON_NUM; ++i) {
+		if (_is_button_pressed(i))
+		{
+			count++;
+		}
+	}
+	second_count = count;
 
-		if ((first_count > 1) || (second_count > 1))
-		{
-			return 0;
-		}
-		else if(_is_button_long_pressed(pressed_i))
-		{
-			return -pressed_i;
-		}
-		else
-		{
-			return pressed_i;
-		}
+	if ((first_count > 1) || (second_count > 1))
+	{
+		return 0;
+	}
+	else if(_is_button_long_pressed(pressed_i))
+	{
+		return -pressed_i;
+	}
+	else
+	{
+		return pressed_i;
 	}
 }
 
@@ -193,7 +191,7 @@ void _click_key(uint8_t key)
 	HID_commit_state();
 	_delay_ms(2);
 	IO_set(0, true);
-	_delay_ms(18);
+	_delay_ms(10);
 	HID_set_scancode_state(key, false);
 	HID_commit_state();
 }
@@ -261,7 +259,7 @@ int main(void)
 		bool holding_shift = false;
 		for (int i = 0; i < s; ++i) {
 			if (k[i] == KSHIFT) {
-				_hold_shift(true);
+				_toggle_shift(true);
 				holding_shift = true;
 				continue;
 			}
@@ -269,7 +267,7 @@ int main(void)
 			_click_key(k[i]);
 
 			if (holding_shift) {
-				_hold_shift(false);
+				_toggle_shift(false);
 				holding_shift = false;
 			}
 			_delay_ms(20);
@@ -286,5 +284,4 @@ void MAIN_timer_handler()
 }
 
 void MAIN_handle_sof()
-{
-}
+{}
